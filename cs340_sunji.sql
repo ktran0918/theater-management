@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: classmysql.engr.oregonstate.edu:3306
--- Generation Time: Aug 11, 2019 at 08:16 PM
+-- Generation Time: Aug 11, 2019 at 09:26 PM
 -- Server version: 10.3.13-MariaDB-log
 -- PHP Version: 7.0.33
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `cs340_trankho`
+-- Database: `cs340_sunji`
 --
 
 -- --------------------------------------------------------
@@ -29,8 +29,8 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `act` (
-  `actor_ID` bigint(60) NOT NULL,
-  `movie_ID` bigint(60) NOT NULL
+  `actor_ID` bigint(9) NOT NULL,
+  `movie_ID` bigint(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -56,9 +56,9 @@ INSERT INTO `act` (`actor_ID`, `movie_ID`) VALUES
 --
 
 CREATE TABLE `actors` (
-  `actor_ID` bigint(60) NOT NULL,
-  `role` varchar(60) NOT NULL,
-  `name` varchar(60) NOT NULL
+  `actor_ID` bigint(9) NOT NULL,
+  `role` varchar(30) NOT NULL,
+  `name` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -84,8 +84,8 @@ INSERT INTO `actors` (`actor_ID`, `role`, `name`) VALUES
 --
 
 CREATE TABLE `has_movies` (
-  `movie_ID` bigint(11) NOT NULL,
-  `theater_ID` bigint(60) NOT NULL
+  `movie_ID` bigint(9) NOT NULL,
+  `theater_ID` bigint(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -93,16 +93,16 @@ CREATE TABLE `has_movies` (
 --
 
 INSERT INTO `has_movies` (`movie_ID`, `theater_ID`) VALUES
-(15423, 123),
-(794520, 9829056387),
-(723867, 1420426278),
-(213458, 7434236753),
-(22291, 5502908022),
-(749761, 4836811707),
-(22291, 7434236753),
+(213458, 1420426278),
+(723867, 4836811707),
 (723867, 910415905),
-(953555, 4836811707),
-(723867, 4836811707);
+(192897, 1690270182),
+(192897, 7434236753),
+(213458, 7434236753),
+(192897, 8881527033),
+(723867, 1420426278),
+(213458, 8881527033),
+(213458, 910415905);
 
 -- --------------------------------------------------------
 
@@ -111,25 +111,25 @@ INSERT INTO `has_movies` (`movie_ID`, `theater_ID`) VALUES
 --
 
 CREATE TABLE `has_snack` (
-  `theater_ID` bigint(60) NOT NULL,
-  `snack_ID` bigint(60) NOT NULL
+  `snack_ID` bigint(9) NOT NULL,
+  `theater_ID` bigint(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `has_snack`
 --
 
-INSERT INTO `has_snack` (`theater_ID`, `snack_ID`) VALUES
-(123, 2587946),
-(123, 2587946),
-(9829056387, 2587946),
-(321, 5344679255),
-(4836811707, 9805208602),
-(8881527033, 4648433021),
-(8881527033, 4648433021),
-(910415905, 5344679255),
-(1420426278, 4165082310),
-(8881527033, 4165082310);
+INSERT INTO `has_snack` (`snack_ID`, `theater_ID`) VALUES
+(2587946, 123),
+(5344679255, 8881527033),
+(4648433021, 7434236753),
+(1597847138, 910415905),
+(690482392, 7434236753),
+(690482392, 1690270182),
+(6143533293, 1420426278),
+(1597847138, 910415905),
+(1597847138, 7434236753),
+(4165082310, 7434236753);
 
 -- --------------------------------------------------------
 
@@ -138,14 +138,14 @@ INSERT INTO `has_snack` (`theater_ID`, `snack_ID`) VALUES
 --
 
 CREATE TABLE `movies` (
-  `movie_ID` bigint(60) NOT NULL,
-  `movie_name` varchar(60) NOT NULL,
+  `movie_ID` bigint(9) NOT NULL,
+  `movie_name` varchar(30) NOT NULL,
   `release_date` date NOT NULL,
-  `running_time` bigint(20) NOT NULL,
-  `genre` varchar(60) NOT NULL,
+  `running_time` int(10) NOT NULL,
+  `genre` varchar(30) NOT NULL,
   `rating` decimal(2,1) NOT NULL,
-  `number_of_tickets_sold` bigint(20) NOT NULL,
-  `price` decimal(12,2) NOT NULL
+  `number_of_tickets_sold` int(11) NOT NULL,
+  `price` decimal(5,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -153,16 +153,16 @@ CREATE TABLE `movies` (
 --
 
 INSERT INTO `movies` (`movie_ID`, `movie_name`, `release_date`, `running_time`, `genre`, `rating`, `number_of_tickets_sold`, `price`) VALUES
-(15423, 'small', '2019-08-29', 80, 'action', '1.0', 500, '2.30'),
-(19882, 'oh!my', '2019-09-13', 60, 'comedy', '9.0', 500, '8.70'),
-(22291, 'oh!3', '2019-12-07', 5, 'comedy', '1.2', 60, '32.30'),
-(192897, 'big', '2019-09-25', 100, 'comedy', '5.0', 10, '5.00'),
-(213458, 'OH!', '2019-08-23', 50, 'comedy', '7.5', 100, '123.20'),
-(583017, 'large', '2019-10-19', 800, 'sci-fi', '5.3', 50, '6.30'),
-(723867, 'HA!', '2019-08-31', 20, 'action', '8.9', 100, '8.20'),
-(749761, 'name', '2019-10-04', 90, 'sci-fi', '9.9', 900, '50.00'),
-(794520, 'ye!', '2019-08-15', 20, 'action', '8.9', 80, '23.60'),
-(953555, 'oh!2', '2019-11-08', 100, 'action', '6.3', 10, '5.30');
+(15423, 'small', '2019-08-29', 80, 'action', '1.0', 500, '0.99'),
+(19882, 'oh!my', '2019-09-13', 60, 'comedy', '9.0', 500, '0.99'),
+(22291, 'oh!3', '2019-12-07', 5, 'comedy', '1.2', 60, '0.99'),
+(192897, 'big', '2019-09-25', 100, 'comedy', '5.0', 10, '0.99'),
+(213458, 'OH!', '2019-08-23', 50, 'comedy', '7.5', 100, '0.99'),
+(583017, 'large', '2019-10-19', 800, 'sci-fi', '5.3', 50, '0.99'),
+(723867, 'HA!', '2019-08-31', 20, 'action', '8.9', 100, '0.99'),
+(749761, 'name', '2019-10-04', 90, 'sci-fi', '9.9', 900, '0.99'),
+(794520, 'ye!', '2019-08-15', 20, 'action', '8.9', 80, '0.99'),
+(953555, 'oh!2', '2019-11-08', 100, 'action', '6.3', 10, '19.99');
 
 -- --------------------------------------------------------
 
@@ -171,25 +171,25 @@ INSERT INTO `movies` (`movie_ID`, `movie_name`, `release_date`, `running_time`, 
 --
 
 CREATE TABLE `produce` (
-  `company_ID` bigint(60) NOT NULL,
-  `movie_ID` bigint(60) NOT NULL
+  `movie_ID` bigint(9) NOT NULL,
+  `company_ID` bigint(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `produce`
 --
 
-INSERT INTO `produce` (`company_ID`, `movie_ID`) VALUES
-(1036431035, 15423),
-(6337113993, 794520),
-(1470838248, 723867),
-(9495176647, 953555),
-(3692143145, 213458),
-(400231, 192897),
-(5809513656, 19882),
-(668404, 192897),
-(400231, 192897),
-(9247892682, 22291);
+INSERT INTO `produce` (`movie_ID`, `company_ID`) VALUES
+(15423, 103643103),
+(794520, 147083824),
+(723867, 400231),
+(583017, 369214314),
+(22291, 400231),
+(213458, 580951365),
+(192897, 580951365),
+(22291, 733339873),
+(213458, 733339873),
+(22291, 400231);
 
 -- --------------------------------------------------------
 
@@ -198,8 +198,8 @@ INSERT INTO `produce` (`company_ID`, `movie_ID`) VALUES
 --
 
 CREATE TABLE `production_company` (
-  `name` varchar(60) NOT NULL,
-  `company_ID` bigint(60) NOT NULL,
+  `name` varchar(30) NOT NULL,
+  `company_ID` bigint(9) NOT NULL,
   `address` varchar(60) NOT NULL,
   `phone_number` bigint(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -209,16 +209,16 @@ CREATE TABLE `production_company` (
 --
 
 INSERT INTO `production_company` (`name`, `company_ID`, `address`, `phone_number`) VALUES
-('Sony Pictures Motion Picture Group', 400231, '1234 nw king st', 5360433135),
+('Sony Pictures Motion Picture G', 400231, '1234 nw king st', 21474836588),
 ('Warner Bros. Entertainment', 668404, '123 nw king st', 1234567895),
-('20th Century Fox', 1036431035, '4321 nw king st', 5792504343),
-('Jia\'s', 1470838248, '456 nw queen st', 160835365),
-('Paramount Pictures', 3692143145, '123456 nw king st', 8429700610),
-('Sun\'s', 5809513656, '321 nw king st', 9257571797),
-('Ji\'s', 6337113993, '4567 nw queen st', 4762835353),
-('Universal Pictures', 7333398733, '54321 nw king st', 2260386930),
-('Walt Disney Studios', 9247892682, '12345 nw king st', 4942305102),
-('Lionsgate Films', 9495176647, '654321 nw king st', 3546701065);
+('20th Century Fox', 103643103, '4321 nw king st', 2147483647),
+('Jia\'s', 147083824, '456 nw queen st', 160835365),
+('Paramount Pictures', 369214314, '123456 nw king st', 2147483678),
+('Sun\'s', 580951365, '321 nw king st', 2147483785),
+('Ji\'s', 633711399, '4567 nw queen st', 2147483784),
+('Universal Pictures', 733339873, '54321 nw king st', 2147483123),
+('Walt Disney Studios', 924789268, '12345 nw king st', 2147483548),
+('Lionsgate Films', 949517664, '654321 nw king st', 2147483258);
 
 -- --------------------------------------------------------
 
@@ -227,10 +227,10 @@ INSERT INTO `production_company` (`name`, `company_ID`, `address`, `phone_number
 --
 
 CREATE TABLE `snack` (
-  `snack_ID` bigint(60) NOT NULL,
-  `snack_name` varchar(60) NOT NULL,
-  `price` decimal(60,2) NOT NULL,
-  `type` varchar(60) NOT NULL
+  `snack_ID` bigint(9) NOT NULL,
+  `snack_name` varchar(30) NOT NULL,
+  `price` decimal(5,2) NOT NULL,
+  `type` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -256,12 +256,12 @@ INSERT INTO `snack` (`snack_ID`, `snack_name`, `price`, `type`) VALUES
 --
 
 CREATE TABLE `theatre` (
-  `theater_ID` bigint(60) NOT NULL,
-  `name` varchar(60) NOT NULL,
-  `phone_number` bigint(10) NOT NULL,
-  `Street` varchar(60) NOT NULL,
-  `city` varchar(60) NOT NULL,
-  `state` varchar(60) NOT NULL
+  `theater_ID` bigint(9) NOT NULL,
+  `name` varchar(30) NOT NULL,
+  `phone_number` int(10) NOT NULL,
+  `Street` varchar(30) NOT NULL,
+  `city` varchar(30) NOT NULL,
+  `state` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -269,16 +269,16 @@ CREATE TABLE `theatre` (
 --
 
 INSERT INTO `theatre` (`theater_ID`, `name`, `phone_number`, `Street`, `city`, `state`) VALUES
-(123, 'abc', 5418292442, '850 nw joker st', 'Corvallis', 'or'),
-(321, 'cba', 5418292443, '850 nw joker st', 'Eugene', 'NC'),
-(910415905, 'iut', 7560720534, '85000 nw joker st', 'j city', 'PO'),
+(123, 'abc', 2147483647, '850 nw joker st', 'Corvallis', 'or'),
+(321, 'cba', 2147483647, '850 nw joker st', 'Eugene', 'NC'),
+(910415905, 'iut', 2147483647, '85000 nw joker st', 'j city', 'PO'),
 (1420426278, 'cyft', 930722060, '8500000 nw joker st', 'w city', 'MJ'),
 (1690270182, 'thg', 1749597709, '85000 nw joker st', 'j city', 'PO'),
 (4836811707, 'gvyu', 1765529152, '85400 nw joker st', 'O city', ' MN'),
 (5502908022, 'vtyt', 1793504994, '85080 nw joker st', 'P city', 'JH'),
-(7434236753, 'nbn', 4748685932, '8500 nw joker st', 'h city', 'BG'),
-(8881527033, 'fgty', 4817435509, '850000 nw joker st', 'z city', 'KJ'),
-(9829056387, 'bcb', 5004795153, '8500 nw joker st', 'Seattle', 'WA');
+(7434236753, 'nbn', 2147483647, '8500 nw joker st', 'h city', 'BG'),
+(8881527033, 'fgty', 2147483647, '850000 nw joker st', 'z city', 'KJ'),
+(9829056387, 'bcb', 2147483647, '8500 nw joker st', 'Seattle', 'WA');
 
 --
 -- Indexes for dumped tables
@@ -371,8 +371,8 @@ ALTER TABLE `has_snack`
 -- Constraints for table `produce`
 --
 ALTER TABLE `produce`
-  ADD CONSTRAINT `produce_ibfk_1` FOREIGN KEY (`movie_ID`) REFERENCES `movies` (`movie_ID`),
-  ADD CONSTRAINT `produce_ibfk_2` FOREIGN KEY (`company_ID`) REFERENCES `production_company` (`company_ID`);
+  ADD CONSTRAINT `produce_ibfk_1` FOREIGN KEY (`company_ID`) REFERENCES `production_company` (`company_ID`),
+  ADD CONSTRAINT `produce_ibfk_2` FOREIGN KEY (`movie_ID`) REFERENCES `movies` (`movie_ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
