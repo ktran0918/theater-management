@@ -1,6 +1,6 @@
 <?php
-	include "./snacks-header.php";
-	$title = "Manage Snacks";
+	include "./movies-header.php";
+	$title = "Production Companies' Popularity";
 ?>
 
 	<section class="greeting">
@@ -15,7 +15,13 @@
 			}
 		// query to select all information from parts table
 		//  ADD the SQL query *******
-			$query = "SELECT * FROM snack";
+			$query = "
+				SELECT name, COUNT(produce.movie_ID) as 'no of movies produced', AVG(rating) as 'avg rating', SUM(number_of_tickets_sold) as 'tickets sold'
+				FROM production_company, produce, movies
+				WHERE production_company.company_ID=produce.company_ID AND movies.movie_ID=produce.movie_ID
+				GROUP BY name
+				ORDER BY SUM(number_of_tickets_sold) DESC
+			";
 		// Get results from query
 			$result = mysqli_query($conn, $query);
 			if (!$result) {
@@ -29,10 +35,10 @@
 				// Create the table header
 				echo "<thead>";
 				echo "<tr>";
-				echo "<th>ID</th>";
 				echo "<th>Name</th>";
-				echo "<th>Price</th>";
-				echo "<th>Type</th>";
+				echo "<th>No. of Produced Movies</th>";
+				echo "<th>Avg. Rating</th>";
+				echo "<th>Tickets sold</th>";
 				echo "</tr>";
 				echo "</thead>";
 
@@ -41,10 +47,10 @@
 				// Extract rows from the results returned from the database
 				while($row = mysqli_fetch_array($result)){
 					echo "<tr>";
-					echo "<td>" . $row['snack_ID'] . "</td>";
-					echo "<td>" . $row['snack_name'] . "</td>";
-					echo "<td>" . $row['price'] . "</td>";
-					echo "<td>" . $row['type'] . "</td>";
+					echo "<td>" . $row['name'] . "</td>";
+					echo "<td>" . $row['no of movies produced'] . "</td>";
+					echo "<td>" . $row['avg rating'] . "</td>";
+					echo "<td>" . $row['tickets sold'] . "</td>";
 					echo "</tr>";
 				}
 
