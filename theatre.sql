@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: classmysql.engr.oregonstate.edu:3306
--- Generation Time: Aug 11, 2019 at 09:26 PM
+-- Generation Time: Aug 12, 2019 at 07:29 PM
 -- Server version: 10.3.13-MariaDB-log
 -- PHP Version: 7.0.33
 
@@ -32,22 +32,6 @@ CREATE TABLE `act` (
   `actor_ID` bigint(9) NOT NULL,
   `movie_ID` bigint(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `act`
---
-
-INSERT INTO `act` (`actor_ID`, `movie_ID`) VALUES
-(422870, 15423),
-(789452, 794520),
-(492697, 953555),
-(369483, 213458),
-(499451, 192897),
-(594098, 749761),
-(667225, 19882),
-(849209, 583017),
-(849209, 19882),
-(456789, 213458);
 
 -- --------------------------------------------------------
 
@@ -88,22 +72,6 @@ CREATE TABLE `has_movies` (
   `theater_ID` bigint(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `has_movies`
---
-
-INSERT INTO `has_movies` (`movie_ID`, `theater_ID`) VALUES
-(213458, 1420426278),
-(723867, 4836811707),
-(723867, 910415905),
-(192897, 1690270182),
-(192897, 7434236753),
-(213458, 7434236753),
-(192897, 8881527033),
-(723867, 1420426278),
-(213458, 8881527033),
-(213458, 910415905);
-
 -- --------------------------------------------------------
 
 --
@@ -111,25 +79,9 @@ INSERT INTO `has_movies` (`movie_ID`, `theater_ID`) VALUES
 --
 
 CREATE TABLE `has_snack` (
-  `snack_ID` bigint(9) NOT NULL,
-  `theater_ID` bigint(9) NOT NULL
+  `theater_ID` bigint(9) NOT NULL,
+  `snack_ID` bigint(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `has_snack`
---
-
-INSERT INTO `has_snack` (`snack_ID`, `theater_ID`) VALUES
-(2587946, 123),
-(5344679255, 8881527033),
-(4648433021, 7434236753),
-(1597847138, 910415905),
-(690482392, 7434236753),
-(690482392, 1690270182),
-(6143533293, 1420426278),
-(1597847138, 910415905),
-(1597847138, 7434236753),
-(4165082310, 7434236753);
 
 -- --------------------------------------------------------
 
@@ -153,16 +105,16 @@ CREATE TABLE `movies` (
 --
 
 INSERT INTO `movies` (`movie_ID`, `movie_name`, `release_date`, `running_time`, `genre`, `rating`, `number_of_tickets_sold`, `price`) VALUES
-(15423, 'small', '2019-08-29', 80, 'action', '1.0', 500, '0.99'),
-(19882, 'oh!my', '2019-09-13', 60, 'comedy', '9.0', 500, '0.99'),
-(22291, 'oh!3', '2019-12-07', 5, 'comedy', '1.2', 60, '0.99'),
-(192897, 'big', '2019-09-25', 100, 'comedy', '5.0', 10, '0.99'),
-(213458, 'OH!', '2019-08-23', 50, 'comedy', '7.5', 100, '0.99'),
-(583017, 'large', '2019-10-19', 800, 'sci-fi', '5.3', 50, '0.99'),
-(723867, 'HA!', '2019-08-31', 20, 'action', '8.9', 100, '0.99'),
-(749761, 'name', '2019-10-04', 90, 'sci-fi', '9.9', 900, '0.99'),
-(794520, 'ye!', '2019-08-15', 20, 'action', '8.9', 80, '0.99'),
-(953555, 'oh!2', '2019-11-08', 100, 'action', '6.3', 10, '19.99');
+(120602931, 'HA!', '2019-08-31', 20, 'action', '8.9', 100, '0.99'),
+(157154533, 'name', '2019-10-04', 90, 'sci-fi', '9.9', 900, '0.99'),
+(200477557, 'oh!my', '2019-09-13', 60, 'comedy', '9.0', 500, '0.99'),
+(243479361, 'oh!2', '2019-11-08', 100, 'action', '6.3', 10, '19.99'),
+(402316707, 'big', '2019-09-25', 100, 'comedy', '5.0', 10, '0.99'),
+(705620021, 'ye!', '2019-08-15', 20, 'action', '8.9', 80, '0.99'),
+(755560770, 'oh!3', '2019-12-07', 5, 'comedy', '1.2', 60, '0.99'),
+(806104336, 'large', '2019-10-19', 800, 'sci-fi', '5.3', 50, '0.99'),
+(910384386, 'small', '2019-08-29', 80, 'action', '1.0', 500, '0.99'),
+(946945275, 'OH!', '2019-08-23', 50, 'comedy', '7.5', 100, '0.99');
 
 -- --------------------------------------------------------
 
@@ -175,22 +127,6 @@ CREATE TABLE `produce` (
   `company_ID` bigint(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `produce`
---
-
-INSERT INTO `produce` (`movie_ID`, `company_ID`) VALUES
-(15423, 103643103),
-(794520, 147083824),
-(723867, 400231),
-(583017, 369214314),
-(22291, 400231),
-(213458, 580951365),
-(192897, 580951365),
-(22291, 733339873),
-(213458, 733339873),
-(22291, 400231);
-
 -- --------------------------------------------------------
 
 --
@@ -198,7 +134,7 @@ INSERT INTO `produce` (`movie_ID`, `company_ID`) VALUES
 --
 
 CREATE TABLE `production_company` (
-  `name` varchar(30) NOT NULL,
+  `name` varchar(40) NOT NULL,
   `company_ID` bigint(9) NOT NULL,
   `address` varchar(60) NOT NULL,
   `phone_number` bigint(10) NOT NULL
@@ -209,13 +145,13 @@ CREATE TABLE `production_company` (
 --
 
 INSERT INTO `production_company` (`name`, `company_ID`, `address`, `phone_number`) VALUES
-('Sony Pictures Motion Picture G', 400231, '1234 nw king st', 21474836588),
-('Warner Bros. Entertainment', 668404, '123 nw king st', 1234567895),
 ('20th Century Fox', 103643103, '4321 nw king st', 2147483647),
-('Jia\'s', 147083824, '456 nw queen st', 160835365),
+('DreamWorks Pictures', 147083824, '456 nw queen st', 160835365),
+('Warner Bros. Entertainment', 367367099, '123 nw king st', 1234567895),
 ('Paramount Pictures', 369214314, '123456 nw king st', 2147483678),
-('Sun\'s', 580951365, '321 nw king st', 2147483785),
-('Ji\'s', 633711399, '4567 nw queen st', 2147483784),
+('Sony Pictures Motion Picture Group', 419177507, '1234 nw king st', 21474836588),
+('Metro-Goldwyn-Mayer Studios', 580951365, '321 nw king st', 2147483785),
+('The Weinstein Company', 633711399, '4567 nw queen st', 2147483784),
 ('Universal Pictures', 733339873, '54321 nw king st', 2147483123),
 ('Walt Disney Studios', 924789268, '12345 nw king st', 2147483548),
 ('Lionsgate Films', 949517664, '654321 nw king st', 2147483258);
@@ -238,16 +174,16 @@ CREATE TABLE `snack` (
 --
 
 INSERT INTO `snack` (`snack_ID`, `snack_name`, `price`, `type`) VALUES
-(2587946, 'a candy', '23.60', 'candy'),
-(690482392, 'b candy', '3.00', 'candy'),
-(1597847138, 'c candy', '1.30', 'candy'),
-(4165082310, 'd candy', '3.00', 'candy'),
-(4648433021, 'Oreo', '3.00', 'cookie'),
-(5344679255, 'g candy', '3.00', 'candy'),
-(6143533293, 'Monster chocolate chip', '5.00', 'cookie'),
-(6453108790, 'Coke', '3.00', 'soda'),
-(6877575515, 'Dr Pepper', '3.00', 'soda'),
-(9805208602, 'j candy', '3.00', 'candy');
+(159784713, 'Baby Ruth', '1.30', 'candy'),
+(371404683, 'Skittles', '9.99', 'candy'),
+(416508210, 'Starburst', '3.00', 'candy'),
+(464843321, 'Oreo', '3.00', 'cookie'),
+(534467255, 'SweetTarts', '3.00', 'candy'),
+(614353323, 'Bit o Honey', '5.00', 'candy'),
+(645310790, 'Coke', '3.00', 'soda'),
+(687757515, 'Dr Pepper', '3.00', 'soda'),
+(923779631, 'Milk Duds', '3.00', 'candy'),
+(980508602, 'Werther\'s Original', '3.00', 'candy');
 
 -- --------------------------------------------------------
 
@@ -257,8 +193,8 @@ INSERT INTO `snack` (`snack_ID`, `snack_name`, `price`, `type`) VALUES
 
 CREATE TABLE `theatre` (
   `theater_ID` bigint(9) NOT NULL,
-  `name` varchar(30) NOT NULL,
-  `phone_number` int(10) NOT NULL,
+  `name` varchar(40) NOT NULL,
+  `phone_number` bigint(10) NOT NULL,
   `Street` varchar(30) NOT NULL,
   `city` varchar(30) NOT NULL,
   `state` varchar(30) NOT NULL
@@ -269,16 +205,16 @@ CREATE TABLE `theatre` (
 --
 
 INSERT INTO `theatre` (`theater_ID`, `name`, `phone_number`, `Street`, `city`, `state`) VALUES
-(123, 'abc', 2147483647, '850 nw joker st', 'Corvallis', 'or'),
-(321, 'cba', 2147483647, '850 nw joker st', 'Eugene', 'NC'),
-(910415905, 'iut', 2147483647, '85000 nw joker st', 'j city', 'PO'),
-(1420426278, 'cyft', 930722060, '8500000 nw joker st', 'w city', 'MJ'),
-(1690270182, 'thg', 1749597709, '85000 nw joker st', 'j city', 'PO'),
-(4836811707, 'gvyu', 1765529152, '85400 nw joker st', 'O city', ' MN'),
-(5502908022, 'vtyt', 1793504994, '85080 nw joker st', 'P city', 'JH'),
-(7434236753, 'nbn', 2147483647, '8500 nw joker st', 'h city', 'BG'),
-(8881527033, 'fgty', 2147483647, '850000 nw joker st', 'z city', 'KJ'),
-(9829056387, 'bcb', 2147483647, '8500 nw joker st', 'Seattle', 'WA');
+(910415905, 'Regal Lloyd Center & IMAX', 8444627342, '1510 NE Multnomah Street', 'Portland', 'OR'),
+(938470335, 'Regal Fox Tower', 8444627342, '846 S.W. Park Ave', 'Portland', 'OR'),
+(941283562, 'Regal Pioneer Place', 8444627342, '340 SW Morrison Street', 'Portland', 'OR'),
+(1420426278, 'Regal Tigard', 8444627342, '11626 SW Pacific Highway', 'Portland', 'OR'),
+(1690270182, 'Regal Bridgeport Village & IMAX', 8444627342, '7329 SW Bridgeport Road', 'Portland', 'OR'),
+(4836811707, 'Regal City Center', 8444627342, '801 C Street', 'Vancouver', ' WA'),
+(5502908022, 'Regal Division Street', 8444627342, '16603 SE Division St.', 'Portland', 'OR'),
+(7434236753, 'Regal Evergreen Parkway & RPX', 8444627342, '2625 NE 106th Ave', 'Portland', 'OR'),
+(8881527033, 'Regal Vancouver Plaza', 8444627342, '7800 N.E. Fourth Plain', 'Vancouver ', 'WA'),
+(9829056387, 'Regal Cascade IMAX & RPX', 8444627342, '1101 SE 160th Avenue', 'Vancouver ', 'WA');
 
 --
 -- Indexes for dumped tables
@@ -308,8 +244,8 @@ ALTER TABLE `has_movies`
 -- Indexes for table `has_snack`
 --
 ALTER TABLE `has_snack`
-  ADD KEY `snack_ID` (`snack_ID`),
-  ADD KEY `theater_ID` (`theater_ID`);
+  ADD KEY `theater_ID` (`theater_ID`),
+  ADD KEY `snack_ID` (`snack_ID`);
 
 --
 -- Indexes for table `movies`
