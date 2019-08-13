@@ -14,3 +14,4 @@
       <li><a href="<?php echo $site_url . "movies/index.php"; ?>">Movies</a></li>
       <li><a href="<?php echo $site_url . "snacks/index.php"; ?>">Snacks</a></li>
     </ul>
+  </nav>
