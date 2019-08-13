@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: classmysql.engr.oregonstate.edu:3306
--- Generation Time: Aug 12, 2019 at 07:29 PM
+-- Generation Time: Aug 12, 2019 at 11:44 PM
 -- Server version: 10.3.13-MariaDB-log
 -- PHP Version: 7.0.33
 
@@ -33,6 +33,22 @@ CREATE TABLE `act` (
   `movie_ID` bigint(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `act`
+--
+
+INSERT INTO `act` (`actor_ID`, `movie_ID`) VALUES
+(315253274, 120602931),
+(702548509, 243479361),
+(943705231, 157154533),
+(832283292, 755560770),
+(434736960, 402316707),
+(485666116, 200477557),
+(513385755, 705620021),
+(679610884, 806104336),
+(899973637, 946945275),
+(995263384, 910384386);
+
 -- --------------------------------------------------------
 
 --
@@ -50,16 +66,16 @@ CREATE TABLE `actors` (
 --
 
 INSERT INTO `actors` (`actor_ID`, `role`, `name`) VALUES
-(369483, 'greenman', 'Grigor'),
-(422870, 'batgirl', 'Katar'),
-(456789, 'superman', 'Amy'),
-(492697, 'beachman', 'Toros'),
-(496291, 'wanderman', 'Vahan'),
-(499451, 'irongirl', 'Varduhi'),
-(594098, 'superboy', 'Siran'),
-(667225, 'supergirl', 'Vardan'),
-(789452, 'batman', 'John'),
-(849209, 'ironman', 'Levon');
+(315253274, 'Andy Dufresne', 'Tim Robbins'),
+(434736960, 'Juror 1', 'Martin Balsam'),
+(485666116, 'Michael', 'Al Pacino'),
+(513385755, 'Oskar Schindler', 'Liam Neeson'),
+(679610884, 'Pumpkin', 'Tim Roth'),
+(702548509, 'Bruce Wayne', 'Christian Bale'),
+(832283292, 'Galadriel', 'Cate Blanchett'),
+(899973637, 'The Narrator', 'Edward Norton'),
+(943705231, 'Don Vito Corleone', 'Marlon Brando'),
+(995263384, 'Tuco', 'Eli Wallach');
 
 -- --------------------------------------------------------
 
@@ -72,6 +88,22 @@ CREATE TABLE `has_movies` (
   `theater_ID` bigint(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `has_movies`
+--
+
+INSERT INTO `has_movies` (`movie_ID`, `theater_ID`) VALUES
+(755560770, 743423653),
+(755560770, 743423653),
+(705620021, 502908022),
+(402316707, 941283562),
+(157154533, 910415905),
+(157154533, 938470335),
+(705620021, 910415905),
+(157154533, 743423653),
+(157154533, 910415905),
+(402316707, 941283562);
+
 -- --------------------------------------------------------
 
 --
@@ -83,6 +115,22 @@ CREATE TABLE `has_snack` (
   `snack_ID` bigint(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `has_snack`
+--
+
+INSERT INTO `has_snack` (`theater_ID`, `snack_ID`) VALUES
+(743423653, 416508210),
+(502908022, 371404683),
+(486811707, 534467255),
+(502908022, 371404683),
+(486811707, 534467255),
+(502908022, 416508210),
+(982905687, 416508210),
+(502908022, 416508210),
+(486811707, 534467255),
+(941283562, 980508602);
+
 -- --------------------------------------------------------
 
 --
@@ -91,7 +139,7 @@ CREATE TABLE `has_snack` (
 
 CREATE TABLE `movies` (
   `movie_ID` bigint(9) NOT NULL,
-  `movie_name` varchar(30) NOT NULL,
+  `movie_name` varchar(50) NOT NULL,
   `release_date` date NOT NULL,
   `running_time` int(10) NOT NULL,
   `genre` varchar(30) NOT NULL,
@@ -105,16 +153,16 @@ CREATE TABLE `movies` (
 --
 
 INSERT INTO `movies` (`movie_ID`, `movie_name`, `release_date`, `running_time`, `genre`, `rating`, `number_of_tickets_sold`, `price`) VALUES
-(120602931, 'HA!', '2019-08-31', 20, 'action', '8.9', 100, '0.99'),
-(157154533, 'name', '2019-10-04', 90, 'sci-fi', '9.9', 900, '0.99'),
-(200477557, 'oh!my', '2019-09-13', 60, 'comedy', '9.0', 500, '0.99'),
-(243479361, 'oh!2', '2019-11-08', 100, 'action', '6.3', 10, '19.99'),
-(402316707, 'big', '2019-09-25', 100, 'comedy', '5.0', 10, '0.99'),
-(705620021, 'ye!', '2019-08-15', 20, 'action', '8.9', 80, '0.99'),
-(755560770, 'oh!3', '2019-12-07', 5, 'comedy', '1.2', 60, '0.99'),
-(806104336, 'large', '2019-10-19', 800, 'sci-fi', '5.3', 50, '0.99'),
-(910384386, 'small', '2019-08-29', 80, 'action', '1.0', 500, '0.99'),
-(946945275, 'OH!', '2019-08-23', 50, 'comedy', '7.5', 100, '0.99');
+(120602931, 'The Shawshank Redemption', '1994-10-14', 142, 'Drama', '9.3', 100000000, '5.30'),
+(157154533, 'The Godfather', '1972-03-24', 175, 'Crime, Drama', '9.2', 100000000, '6.99'),
+(200477557, 'The Godfather: Part II', '1974-12-20', 202, 'Crime, Drama', '9.0', 100000000, '9.60'),
+(243479361, 'The Dark Knight', '2008-07-18', 152, 'Action, Crime, Drama', '9.0', 100000000, '12.99'),
+(402316707, '12 Angry Men', '1957-04-10', 96, 'Drama', '8.9', 100000000, '4.99'),
+(705620021, 'Schindler\'s List', '1994-02-04', 195, 'Biography, Drama, History', '8.9', 100000000, '2.99'),
+(755560770, 'The Lord of the Rings: The Return of the King', '2003-12-17', 201, 'Adventure, Drama, Fantasy', '8.9', 100000000, '15.99'),
+(806104336, 'Pulp Fiction', '1994-10-14', 154, 'Crime, Drama', '8.9', 100000000, '6.99'),
+(910384386, 'The Good, the Bad and the Ugly', '1967-12-29', 178, 'Western', '8.8', 100000000, '7.99'),
+(946945275, 'Fight Club', '1999-10-15', 139, 'Drama', '8.8', 100000000, '8.99');
 
 -- --------------------------------------------------------
 
@@ -126,6 +174,22 @@ CREATE TABLE `produce` (
   `movie_ID` bigint(9) NOT NULL,
   `company_ID` bigint(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `produce`
+--
+
+INSERT INTO `produce` (`movie_ID`, `company_ID`) VALUES
+(243479361, 580951365),
+(705620021, 419177507),
+(705620021, 419177507),
+(200477557, 369214314),
+(755560770, 419177507),
+(157154533, 369214314),
+(120602931, 419177507),
+(200477557, 633711399),
+(157154533, 733339873),
+(402316707, 924789268);
 
 -- --------------------------------------------------------
 
@@ -205,16 +269,16 @@ CREATE TABLE `theatre` (
 --
 
 INSERT INTO `theatre` (`theater_ID`, `name`, `phone_number`, `Street`, `city`, `state`) VALUES
+(142042627, 'Regal Tigard', 8444627342, '11626 SW Pacific Highway', 'Portland', 'OR'),
+(169270182, 'Regal Bridgeport Village & IMAX', 8444627342, '7329 SW Bridgeport Road', 'Portland', 'OR'),
+(486811707, 'Regal City Center', 8444627342, '801 C Street', 'Vancouver', ' WA'),
+(502908022, 'Regal Division Street', 8444627342, '16603 SE Division St.', 'Portland', 'OR'),
+(743423653, 'Regal Evergreen Parkway & RPX', 8444627342, '2625 NE 106th Ave', 'Portland', 'OR'),
+(888157033, 'Regal Vancouver Plaza', 8444627342, '7800 N.E. Fourth Plain', 'Vancouver ', 'WA'),
 (910415905, 'Regal Lloyd Center & IMAX', 8444627342, '1510 NE Multnomah Street', 'Portland', 'OR'),
 (938470335, 'Regal Fox Tower', 8444627342, '846 S.W. Park Ave', 'Portland', 'OR'),
 (941283562, 'Regal Pioneer Place', 8444627342, '340 SW Morrison Street', 'Portland', 'OR'),
-(1420426278, 'Regal Tigard', 8444627342, '11626 SW Pacific Highway', 'Portland', 'OR'),
-(1690270182, 'Regal Bridgeport Village & IMAX', 8444627342, '7329 SW Bridgeport Road', 'Portland', 'OR'),
-(4836811707, 'Regal City Center', 8444627342, '801 C Street', 'Vancouver', ' WA'),
-(5502908022, 'Regal Division Street', 8444627342, '16603 SE Division St.', 'Portland', 'OR'),
-(7434236753, 'Regal Evergreen Parkway & RPX', 8444627342, '2625 NE 106th Ave', 'Portland', 'OR'),
-(8881527033, 'Regal Vancouver Plaza', 8444627342, '7800 N.E. Fourth Plain', 'Vancouver ', 'WA'),
-(9829056387, 'Regal Cascade IMAX & RPX', 8444627342, '1101 SE 160th Avenue', 'Vancouver ', 'WA');
+(982905687, 'Regal Cascade IMAX & RPX', 8444627342, '1101 SE 160th Avenue', 'Vancouver ', 'WA');
 
 --
 -- Indexes for dumped tables
