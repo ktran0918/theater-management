@@ -1,74 +1,100 @@
 body {
-  margin: 0;
-  padding: 0;
+	margin: 0;
+	padding: 0;
 }
 
 /* Main navigation */
 #main-nav {
-  display: inline-block;
-  width: 100%;
-  background-color: black;
+	display: inline-block;
+	width: 100%;
+	background-color: black;
 }
 
 #main-nav-list {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
 }
 
 #main-nav-list li {
-  float: left;
+	float: left;
 }
 
 #main-nav-list li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
 }
 
 #main-nav-list li a:hover {
-  background-color: green;
+	background-color: green;
 }
 
 /* Main section */
 main {
-  display: block;
-  width: 60%;
-  margin: auto;
-  margin-top: 5%;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+	display: block;
+	width: 65%;
+	margin: auto;
+	margin-top: 3%;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .greeting {
-  text-align: center;
+	text-align: center;
 }
 
 /* Side navigation */
 #side-nav {
-  margin-top: 5%;
-  display: block;
-  float: left;
-  background-color: #f1f1f1;
+	margin-top: 5%;
+	display: block;
+	float: left;
+	background-color: #f1f1f1;
 }
 
 #side-nav-list {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
 }
 
 #side-nav-list a {
-  display: block;
-  color: #000;
-  padding: 8px 16px;
-  text-decoration: none;
-  border-top: 1px solid gray;
+	display: block;
+	color: #000;
+	padding: 8px 16px;
+	text-decoration: none;
+	border-top: 1px solid gray;
 }
 
 /* Change the link color on hover */
 #side-nav-list a:hover {
-  background-color: green;
-  color: white;
+	background-color: green;
+	color: white;
+}
+
+/* Styling data table */
+.data-table {
+	margin: auto;
+	border-collapse: collapse;
+}
+
+.data-table thead {
+	background-color: black;
+	color: white;
+}
+
+.data-table tr:nth-child(even) {
+	background-color: #f1f1f1;
+}
+
+.data-table tbody tr:hover {
+	background-color: green;
+	color: white;
+}
+
+.data-table th,
+td {
+	padding: 7px 10px;
+	border: 1px solid black;
 }
