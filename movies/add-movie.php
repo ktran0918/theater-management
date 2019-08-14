@@ -52,10 +52,10 @@
   <h2><?php echo $msg; ?></h2>
   <form method="post" id="addForm">
     <fieldset>
-      <legend>Movies:</legend>
+      <legend>Movie:</legend>
       <p> 
         <label for "movie_ID">Movie ID: </label>
-        <input type = "number" min = 0 max = 999999999 class="required" name = "movie_ID" id = "movie_ID" title= "movie_ID should be numberic">
+        <input type = "number" min = 0 max = 999999999 class="required" name = "movie_ID" id = "movie_ID" title= "movie_ID should be numeric">
       </p>
       <p>
         <label for "movie_name">name:</label>
@@ -67,7 +67,7 @@
       </p>
       <p>
         <label for "running_time">running_time:</label>
-        <input type = "number" min = 1 max = 999 class = "required" name = "running_time" id = "running_time" title = "running_time should be numberic">
+        <input type = "number" min = 1 max = 999 class = "required" name = "running_time" id = "running_time" title = "running_time should be numeric">
       </p>
     
       <p>
