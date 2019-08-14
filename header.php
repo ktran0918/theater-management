@@ -1,4 +1,4 @@
-<?php $site_url = "/~trankho/theater-management/" ?>
+<?php $site_url = "/~sunji/cs340/theater_management_system/" ?>
 
 <!DOCTYPE html>
 <html>

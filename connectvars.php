@@ -6,3 +6,4 @@
   define('DB_NAME', 'cs340_sunji');
   define('CON_STRING', 'mysql:host=classmysql.engr.oregonstate.edu;dname=cs340_sunji');
 ?>
+
