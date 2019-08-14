@@ -8,6 +8,7 @@
 		<li><a href="index.php">List</a></li>
 		<li><a href="attendance-by-theater.php">Attendance by Theater</a></li>
 		<li><a href="attendance-by-city.php">Attendance by City</a></li>
+		<li><a href="addTheaters.php">Add Theaters</a></li>
 	</ul>
 </nav>
 
