@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: classmysql.engr.oregonstate.edu:3306
--- Generation Time: Aug 12, 2019 at 11:44 PM
+-- Generation Time: Aug 13, 2019 at 06:46 PM
 -- Server version: 10.3.13-MariaDB-log
 -- PHP Version: 7.0.33
 
@@ -230,24 +230,25 @@ CREATE TABLE `snack` (
   `snack_ID` bigint(9) NOT NULL,
   `snack_name` varchar(30) NOT NULL,
   `price` decimal(5,2) NOT NULL,
-  `type` varchar(30) NOT NULL
+  `type` varchar(30) NOT NULL,
+  `quantity_sold` bigint(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `snack`
 --
 
-INSERT INTO `snack` (`snack_ID`, `snack_name`, `price`, `type`) VALUES
-(159784713, 'Baby Ruth', '1.30', 'candy'),
-(371404683, 'Skittles', '9.99', 'candy'),
-(416508210, 'Starburst', '3.00', 'candy'),
-(464843321, 'Oreo', '3.00', 'cookie'),
-(534467255, 'SweetTarts', '3.00', 'candy'),
-(614353323, 'Bit o Honey', '5.00', 'candy'),
-(645310790, 'Coke', '3.00', 'soda'),
-(687757515, 'Dr Pepper', '3.00', 'soda'),
-(923779631, 'Milk Duds', '3.00', 'candy'),
-(980508602, 'Werther\'s Original', '3.00', 'candy');
+INSERT INTO `snack` (`snack_ID`, `snack_name`, `price`, `type`, `quantity_sold`) VALUES
+(159784713, 'Baby Ruth', '1.30', 'candy', 5),
+(371404683, 'Skittles', '9.99', 'candy', 20),
+(416508210, 'Starburst', '3.00', 'candy', 15),
+(464843321, 'Oreo', '3.00', 'cookie', 50),
+(534467255, 'SweetTarts', '3.00', 'candy', 15),
+(614353323, 'Popcorn', '5.00', 'snack', 500),
+(645310790, 'Coke', '3.00', 'soda', 250),
+(687757515, 'Dr Pepper', '3.00', 'soda', 150),
+(923779631, 'Milk Duds', '3.00', 'candy', 60),
+(980508602, 'Chex Mix', '3.00', 'snack', 60);
 
 -- --------------------------------------------------------
 
@@ -259,7 +260,7 @@ CREATE TABLE `theatre` (
   `theater_ID` bigint(9) NOT NULL,
   `name` varchar(40) NOT NULL,
   `phone_number` bigint(10) NOT NULL,
-  `Street` varchar(30) NOT NULL,
+  `street` varchar(30) NOT NULL,
   `city` varchar(30) NOT NULL,
   `state` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -268,7 +269,7 @@ CREATE TABLE `theatre` (
 -- Dumping data for table `theatre`
 --
 
-INSERT INTO `theatre` (`theater_ID`, `name`, `phone_number`, `Street`, `city`, `state`) VALUES
+INSERT INTO `theatre` (`theater_ID`, `name`, `phone_number`, `street`, `city`, `state`) VALUES
 (142042627, 'Regal Tigard', 8444627342, '11626 SW Pacific Highway', 'Portland', 'OR'),
 (169270182, 'Regal Bridgeport Village & IMAX', 8444627342, '7329 SW Bridgeport Road', 'Portland', 'OR'),
 (486811707, 'Regal City Center', 8444627342, '801 C Street', 'Vancouver', ' WA'),
