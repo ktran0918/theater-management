@@ -1,13 +1,13 @@
 <?php
     include "./theater-header.php";
-    $title="Add Theaters";
+    $title="Add a Theater";
 ?>
     <section class = "greeting">
 	<h1><?php echo $title; ?></h1>
     </section>
 
 <?php
-    $msg = "Add new theater record to the theater table";
+    $msg = "Add a new theater record:";
     $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
     if(!$conn){
 	die('Could not connect: ' . mysql_error());
@@ -42,10 +42,10 @@ mysqli_close($conn);
     <h2> <?php echo $msg; ?> </h2>
     <form method="post" id="addForm">
     <fieldset>
-	<legend>Theaters:</legend>
+	<legend>Theater:</legend>
 	<p> 
 	    <label for "theater_ID">Theater ID: </label>
-	    <input type = "number" min = 0 max = 999999999999 class="required" name = "theater_ID" id = "theater_ID" title= "moive_ID should be numberic">
+	    <input type = "number" min = 0 max = 999999999 class="required" name = "theater_ID" id = "theater_ID" title= "theater_ID should be numberic">
 	</p>
 	<p>
 	    <label for "name">name:</label>
@@ -57,20 +57,25 @@ mysqli_close($conn);
      </p>
         <p>
     	<label for "street">street:</label>
-	    <input type = "text" class = "required" name = "street" id = street">
+	    <input type = "text" class = "required" name = "street" id = "street">
     	</p>
 	<p>
     	<label for "city">city:</label>
-	    <input type = "text" class = "required" name = "city" id = city">
+	    <input type = "text" class = "required" name = "city" id = "city">
     	</p>
 	<p>
     	<label for "state">state:</label>
-	    <input type = "text" class = "required" name = "state" id = state">
+	    <input type = "text" class = "required" name = "state" id = "state">
     	</p>
 	<p>
 	    <input type = "submit" value = "submit"/>
 	    <input type = "reset" value = "clear form"/>
     </fieldset>
-</body>
-</html>
+</form>
+
+</section>
+
+</main>
+
+<?php include "../footer.php"; ?>
  
