@@ -20,6 +20,10 @@
     $price = mysqli_real_escape_string($conn, $_POST['price']);
     $queryIn = "SELECT price FROM snack where snack_ID = '$snack_ID'";
     $resultIn = mysqli_query($conn, $queryIn);
+    if(mysqli_num_rows($resultIn) == 0){
+      $msg = "Must be an existing ID!";
+    }
+    else {
       $query = "
         UPDATE snack
         SET price = '$price'
@@ -33,7 +37,7 @@
         echo "ERROR: could not edit the snack $query." . mysqli_error($conn);
       }
     }
-
+  }
   mysqli_close($conn);
 ?>
 
@@ -44,11 +48,11 @@
       <legend>Snack:</legend>
       <p> 
         <label for "snack_ID">Snack ID: </label>
-        <input type = "number" min = 0 max = 999999999 class="required" name = "snack_ID" id = "snack_ID" title= "Snack ID should be numberic">
+        <input type = "number" min = 0 max = 999999999 required name = "snack_ID" id = "snack_ID" title= "Snack ID should be numberic">
       </p>
       <p>
         <label for "price">Price:</label>
-        <input type = "number" min = 0 max = 99 class = "required" name = "price" id = "price" step=".01" title = "price should be numeric">
+        <input type = "number" min = 0 max = 99 required name = "price" id = "price" step=".01" title = "price should be numeric">
       </p>
       <p>
         <input type = "submit" value = "submit"/>

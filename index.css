@@ -36,7 +36,7 @@ body {
 main {
 	display: block;
 	width: 65%;
-	margin: 3% auto;
+	margin: 3% 10% 3% 20%;
 	font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 

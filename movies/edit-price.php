@@ -21,6 +21,10 @@
     //Add query to insert movie in movies table
     $queryIn = "SELECT price FROM movies where movie_ID = '$movie_ID'";
     $resultIn = mysqli_query($conn, $queryIn);
+    if(mysqli_num_rows($resultIn) == 0){
+      $msg = "Must be an existing ID!";
+    }
+    else {
       $query = "
         UPDATE movies
         SET price = '$price'
@@ -34,7 +38,7 @@
         echo "ERROR: could not edit the movie $query." . mysqli_error($conn);
       }
     }
-
+  }
   mysqli_close($conn);
 ?>
 
@@ -45,11 +49,11 @@
       <legend>Movie:</legend>
       <p> 
         <label for "movie_ID">Movie ID: </label>
-        <input type = "number" min = 0 max = 999999999 class="required" name = "movie_ID" id = "movie_ID" title= "movie_ID should be numberic">
+        <input type = "number" min = 0 max = 999999999 required name = "movie_ID" id = "movie_ID" title= "movie_ID should be numberic">
       </p>
       <p>
         <label for "price">Price:</label>
-        <input type = "number" min = 0 max = 99 class = "required" name = "price" id = "price" step=".01" title = "price should be numeric">
+        <input type = "number" min = 0 max = 99 required name = "price" id = "price" step=".01" title = "price should be numeric">
       </p>
       <p>
         <input type = "submit" value = "submit"/>
