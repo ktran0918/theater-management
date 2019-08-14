@@ -1,13 +1,13 @@
 <?php
     include "./snacks-header.php";
-    $title="Add Snacks";
+    $title="Add a Snack";
 ?>
     <section class = "greeting">
 	<h1><?php echo $title; ?></h1>
     </section>
 
 <?php
-    $msg = "Add new snack record to the snack table";
+    $msg = "Add a new snack record:";
     $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
     if(!$conn){
 	die('Could not connect: ' . mysql_error());
@@ -45,7 +45,7 @@ mysqli_close($conn);
 	<legend>snack:</legend>
 	<p> 
 	    <label for "snack_ID">snack ID: </label>
-	    <input type = "number" min = 0 max = 999999999999 class="required" name = "snack_ID" id = "snack_ID" title= "moive_ID should be numberic">
+	    <input type = "number" min = 0 max = 999999999 class="required" name = "snack_ID" id = "snack_ID" title= "movie_ID should be numeric">
 	</p>
 	<p>
 	    <label for "snack_name">name:</label>
@@ -53,7 +53,7 @@ mysqli_close($conn);
 	</p>
 	<p>
 	    <label for "price">price:</label>
-	    <input type = "number" min = 0 max = 99999 class = "required" name = "price" id = "price" title = "price should be numeric">
+	    <input type = "number" min = 0 max = 99 class = "required" name = "price" id = "price" step=".01" title = "price should be numeric">
 	</p>
 	<p>
 	    <label for "type">type:</label>
@@ -61,7 +61,7 @@ mysqli_close($conn);
 	</p>	
 	<p>
 	    <label for "quantity_sold">quantity_sold:</label>
-	    <input type = "number" min = 0 max = 99999 class = "required" name = "quantity_sold" id = "quantity_sold" title = "number of tickets sold should be numeric">
+	    <input type = "number" min = 0 max = 99999 class = "required" name = "quantity_sold" id = "quantity_sold" title = "quantity sold should be numeric">
 	</p>
 
 	<p>
