@@ -10,6 +10,7 @@
 		<li><a href="actors-popularity.php">Actors' Popularity</a></li>
 		<li><a href="add-movie.php">Add a Movie</a></li>
 		<li><a href="edit-price.php">Edit a Movie's Price</a></li>
+		<li><a href="delete-movie.php">Delete a Movie</a></li>
 	</ul>
 </nav>
 
