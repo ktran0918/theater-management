@@ -17,7 +17,7 @@
 		//  ADD the SQL query *******
 			$query = "
 				SELECT name, COUNT(produce.movie_ID) as 'no of movies produced', AVG(rating) as 'avg rating', SUM(number_of_tickets_sold) as 'tickets sold'
-				FROM production_company, produce, movies
+				FROM production_company, produce, movies, has_movies
 				WHERE production_company.company_ID=produce.company_ID AND movies.movie_ID=produce.movie_ID
 				GROUP BY name
 				ORDER BY SUM(number_of_tickets_sold) DESC
