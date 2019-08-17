@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: classmysql.engr.oregonstate.edu:3306
--- Generation Time: Aug 12, 2019 at 11:44 PM
+-- Generation Time: Aug 16, 2019 at 11:50 PM
 -- Server version: 10.3.13-MariaDB-log
 -- PHP Version: 7.0.33
 
@@ -38,9 +38,7 @@ CREATE TABLE `act` (
 --
 
 INSERT INTO `act` (`actor_ID`, `movie_ID`) VALUES
-(315253274, 120602931),
 (702548509, 243479361),
-(943705231, 157154533),
 (832283292, 755560770),
 (434736960, 402316707),
 (485666116, 200477557),
@@ -67,6 +65,7 @@ CREATE TABLE `actors` (
 
 INSERT INTO `actors` (`actor_ID`, `role`, `name`) VALUES
 (315253274, 'Andy Dufresne', 'Tim Robbins'),
+(326287322, 'Bryan Mills', 'Liam Neeson'),
 (434736960, 'Juror 1', 'Martin Balsam'),
 (485666116, 'Michael', 'Al Pacino'),
 (513385755, 'Oskar Schindler', 'Liam Neeson'),
@@ -85,24 +84,25 @@ INSERT INTO `actors` (`actor_ID`, `role`, `name`) VALUES
 
 CREATE TABLE `has_movies` (
   `movie_ID` bigint(9) NOT NULL,
-  `theater_ID` bigint(9) NOT NULL
+  `theater_ID` bigint(9) NOT NULL,
+  `number_of_tickets_sold` bigint(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `has_movies`
 --
 
-INSERT INTO `has_movies` (`movie_ID`, `theater_ID`) VALUES
-(755560770, 743423653),
-(755560770, 743423653),
-(705620021, 502908022),
-(402316707, 941283562),
-(157154533, 910415905),
-(157154533, 938470335),
-(705620021, 910415905),
-(157154533, 743423653),
-(157154533, 910415905),
-(402316707, 941283562);
+INSERT INTO `has_movies` (`movie_ID`, `theater_ID`, `number_of_tickets_sold`) VALUES
+(755560770, 743423653, 100),
+(705620021, 502908022, 1000),
+(705620021, 910415905, 7000),
+(705620021, 938470335, 50000),
+(806104336, 941283562, 50000),
+(705620021, 412498756, 100000),
+(243479361, 142042627, 50000),
+(200477557, 169270182, 150000),
+(910384386, 162824827, 10000),
+(910384386, 502908022, 50000);
 
 -- --------------------------------------------------------
 
@@ -112,24 +112,25 @@ INSERT INTO `has_movies` (`movie_ID`, `theater_ID`) VALUES
 
 CREATE TABLE `has_snack` (
   `theater_ID` bigint(9) NOT NULL,
-  `snack_ID` bigint(9) NOT NULL
+  `snack_ID` bigint(9) NOT NULL,
+  `quantity_sold` bigint(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `has_snack`
 --
 
-INSERT INTO `has_snack` (`theater_ID`, `snack_ID`) VALUES
-(743423653, 416508210),
-(502908022, 371404683),
-(486811707, 534467255),
-(502908022, 371404683),
-(486811707, 534467255),
-(502908022, 416508210),
-(982905687, 416508210),
-(502908022, 416508210),
-(486811707, 534467255),
-(941283562, 980508602);
+INSERT INTO `has_snack` (`theater_ID`, `snack_ID`, `quantity_sold`) VALUES
+(743423653, 416508210, 10000),
+(982905687, 416508210, 9000),
+(941283562, 980508602, 9000),
+(169270182, 1595159, 6000),
+(982905687, 159784713, 10520),
+(743423653, 1595159, 10254),
+(162824827, 159784713, 12365),
+(938470335, 534467255, 50000),
+(743423653, 923779631, 10000),
+(888157033, 464843321, 10000);
 
 -- --------------------------------------------------------
 
@@ -144,7 +145,6 @@ CREATE TABLE `movies` (
   `running_time` int(10) NOT NULL,
   `genre` varchar(30) NOT NULL,
   `rating` decimal(2,1) NOT NULL,
-  `number_of_tickets_sold` int(11) NOT NULL,
   `price` decimal(5,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -152,17 +152,36 @@ CREATE TABLE `movies` (
 -- Dumping data for table `movies`
 --
 
-INSERT INTO `movies` (`movie_ID`, `movie_name`, `release_date`, `running_time`, `genre`, `rating`, `number_of_tickets_sold`, `price`) VALUES
-(120602931, 'The Shawshank Redemption', '1994-10-14', 142, 'Drama', '9.3', 100000000, '5.30'),
-(157154533, 'The Godfather', '1972-03-24', 175, 'Crime, Drama', '9.2', 100000000, '6.99'),
-(200477557, 'The Godfather: Part II', '1974-12-20', 202, 'Crime, Drama', '9.0', 100000000, '9.60'),
-(243479361, 'The Dark Knight', '2008-07-18', 152, 'Action, Crime, Drama', '9.0', 100000000, '12.99'),
-(402316707, '12 Angry Men', '1957-04-10', 96, 'Drama', '8.9', 100000000, '4.99'),
-(705620021, 'Schindler\'s List', '1994-02-04', 195, 'Biography, Drama, History', '8.9', 100000000, '2.99'),
-(755560770, 'The Lord of the Rings: The Return of the King', '2003-12-17', 201, 'Adventure, Drama, Fantasy', '8.9', 100000000, '15.99'),
-(806104336, 'Pulp Fiction', '1994-10-14', 154, 'Crime, Drama', '8.9', 100000000, '6.99'),
-(910384386, 'The Good, the Bad and the Ugly', '1967-12-29', 178, 'Western', '8.8', 100000000, '7.99'),
-(946945275, 'Fight Club', '1999-10-15', 139, 'Drama', '8.8', 100000000, '8.99');
+INSERT INTO `movies` (`movie_ID`, `movie_name`, `release_date`, `running_time`, `genre`, `rating`, `price`) VALUES
+(170709366, 'Alien ', '1979-06-22', 113, ' Horror, Sci-Fi', '8.4', '11.50'),
+(200477557, 'The Godfather: Part II', '1974-12-20', 202, 'Crime, Drama', '9.0', '9.60'),
+(243479361, 'The Dark Knight', '2008-07-18', 152, 'Action, Crime, Drama', '9.0', '12.99'),
+(309235572, 'Memento ', '2001-05-25', 113, 'Mystery, Thriller', '8.4', '15.90'),
+(402316707, '12 Angry Men', '1957-04-10', 96, 'Drama', '8.9', '4.99'),
+(705620021, 'Schindler\'s List', '1994-02-04', 195, 'Biography, Drama, History', '8.9', '2.99'),
+(755560770, 'The Lord of the Rings: The Return of the King', '2003-12-17', 201, 'Adventure, Drama, Fantasy', '8.9', '15.99'),
+(806104336, 'Pulp Fiction', '1994-10-14', 154, 'Crime, Drama', '8.9', '6.99'),
+(910384386, 'The Good, the Bad and the Ugly', '1967-12-29', 178, 'Western', '8.8', '7.99'),
+(946945275, 'Fight Club', '1999-10-15', 139, 'Drama', '8.8', '8.99');
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `movies_at_theaters`
+-- (See below for the actual view)
+--
+CREATE TABLE `movies_at_theaters` (
+`Movie` varchar(50)
+,`movie_ID` bigint(9)
+,`theater_ID` bigint(9)
+,`Theater` varchar(40)
+,`tickets_sold` bigint(11)
+,`release_date` date
+,`running_time` int(10)
+,`genre` varchar(30)
+,`rating` decimal(2,1)
+,`price` decimal(5,2)
+);
 
 -- --------------------------------------------------------
 
@@ -181,15 +200,15 @@ CREATE TABLE `produce` (
 
 INSERT INTO `produce` (`movie_ID`, `company_ID`) VALUES
 (243479361, 580951365),
-(705620021, 419177507),
-(705620021, 419177507),
 (200477557, 369214314),
 (755560770, 419177507),
-(157154533, 369214314),
-(120602931, 419177507),
 (200477557, 633711399),
-(157154533, 733339873),
-(402316707, 924789268);
+(402316707, 924789268),
+(705620021, 580951365),
+(806104336, 924789268),
+(946945275, 147083824),
+(910384386, 367367099),
+(309235572, 580951365);
 
 -- --------------------------------------------------------
 
@@ -238,16 +257,35 @@ CREATE TABLE `snack` (
 --
 
 INSERT INTO `snack` (`snack_ID`, `snack_name`, `price`, `type`) VALUES
-(159784713, 'Baby Ruth', '1.30', 'candy'),
+(1595159, 'Red Vines', '3.99', 'candy'),
+(159784713, 'Baby Ruth', '6.00', 'candy'),
 (371404683, 'Skittles', '9.99', 'candy'),
-(416508210, 'Starburst', '3.00', 'candy'),
+(416508210, 'Starburst', '2.50', 'candy'),
 (464843321, 'Oreo', '3.00', 'cookie'),
 (534467255, 'SweetTarts', '3.00', 'candy'),
-(614353323, 'Bit o Honey', '5.00', 'candy'),
+(614353323, 'Popcorn', '5.00', 'snack'),
 (645310790, 'Coke', '3.00', 'soda'),
+(653013753, 'nacho', '5.00', 'snack'),
+(672265475, 'CHEETOS', '5.00', 'snack'),
 (687757515, 'Dr Pepper', '3.00', 'soda'),
 (923779631, 'Milk Duds', '3.00', 'candy'),
-(980508602, 'Werther\'s Original', '3.00', 'candy');
+(980508602, 'Chex Mix', '3.00', 'snack');
+
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `snacks_at_theaters`
+-- (See below for the actual view)
+--
+CREATE TABLE `snacks_at_theaters` (
+`Snack` varchar(30)
+,`Theater` varchar(40)
+,`quantity_sold` bigint(9)
+,`snack_ID` bigint(9)
+,`theater_ID` bigint(9)
+,`price` decimal(5,2)
+,`type` varchar(30)
+);
 
 -- --------------------------------------------------------
 
@@ -259,7 +297,7 @@ CREATE TABLE `theatre` (
   `theater_ID` bigint(9) NOT NULL,
   `name` varchar(40) NOT NULL,
   `phone_number` bigint(10) NOT NULL,
-  `Street` varchar(30) NOT NULL,
+  `street` varchar(30) NOT NULL,
   `city` varchar(30) NOT NULL,
   `state` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -268,9 +306,11 @@ CREATE TABLE `theatre` (
 -- Dumping data for table `theatre`
 --
 
-INSERT INTO `theatre` (`theater_ID`, `name`, `phone_number`, `Street`, `city`, `state`) VALUES
+INSERT INTO `theatre` (`theater_ID`, `name`, `phone_number`, `street`, `city`, `state`) VALUES
 (142042627, 'Regal Tigard', 8444627342, '11626 SW Pacific Highway', 'Portland', 'OR'),
+(162824827, 'Regal Stark Street', 8444627342, '2929 N.E. Kane Drive', 'Portland', 'OR'),
 (169270182, 'Regal Bridgeport Village & IMAX', 8444627342, '7329 SW Bridgeport Road', 'Portland', 'OR'),
+(412498756, 'Regal Stark Street', 8444627342, '2929 N.E. Kane Drive', 'Portland', 'OR'),
 (486811707, 'Regal City Center', 8444627342, '801 C Street', 'Vancouver', ' WA'),
 (502908022, 'Regal Division Street', 8444627342, '16603 SE Division St.', 'Portland', 'OR'),
 (743423653, 'Regal Evergreen Parkway & RPX', 8444627342, '2625 NE 106th Ave', 'Portland', 'OR'),
@@ -279,6 +319,24 @@ INSERT INTO `theatre` (`theater_ID`, `name`, `phone_number`, `Street`, `city`, `
 (938470335, 'Regal Fox Tower', 8444627342, '846 S.W. Park Ave', 'Portland', 'OR'),
 (941283562, 'Regal Pioneer Place', 8444627342, '340 SW Morrison Street', 'Portland', 'OR'),
 (982905687, 'Regal Cascade IMAX & RPX', 8444627342, '1101 SE 160th Avenue', 'Vancouver ', 'WA');
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `movies_at_theaters`
+--
+DROP TABLE IF EXISTS `movies_at_theaters`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`cs340_sunji`@`%` SQL SECURITY DEFINER VIEW `movies_at_theaters`  AS  select `movies`.`movie_name` AS `Movie`,`has_movies`.`movie_ID` AS `movie_ID`,`has_movies`.`theater_ID` AS `theater_ID`,`theatre`.`name` AS `Theater`,`has_movies`.`number_of_tickets_sold` AS `tickets_sold`,`movies`.`release_date` AS `release_date`,`movies`.`running_time` AS `running_time`,`movies`.`genre` AS `genre`,`movies`.`rating` AS `rating`,`movies`.`price` AS `price` from ((`has_movies` join `theatre`) join `movies`) where `movies`.`movie_ID` = `has_movies`.`movie_ID` and `theatre`.`theater_ID` = `has_movies`.`theater_ID` ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `snacks_at_theaters`
+--
+DROP TABLE IF EXISTS `snacks_at_theaters`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`cs340_sunji`@`%` SQL SECURITY DEFINER VIEW `snacks_at_theaters`  AS  select `snack`.`snack_name` AS `Snack`,`theatre`.`name` AS `Theater`,`has_snack`.`quantity_sold` AS `quantity_sold`,`has_snack`.`snack_ID` AS `snack_ID`,`has_snack`.`theater_ID` AS `theater_ID`,`snack`.`price` AS `price`,`snack`.`type` AS `type` from ((`has_snack` join `theatre`) join `snack`) where `snack`.`snack_ID` = `has_snack`.`snack_ID` and `theatre`.`theater_ID` = `has_snack`.`theater_ID` ;
 
 --
 -- Indexes for dumped tables
@@ -350,29 +408,29 @@ ALTER TABLE `theatre`
 -- Constraints for table `act`
 --
 ALTER TABLE `act`
-  ADD CONSTRAINT `act_ibfk_1` FOREIGN KEY (`actor_ID`) REFERENCES `actors` (`actor_ID`),
-  ADD CONSTRAINT `act_ibfk_2` FOREIGN KEY (`movie_ID`) REFERENCES `movies` (`movie_ID`);
+  ADD CONSTRAINT `act_ibfk_1` FOREIGN KEY (`actor_ID`) REFERENCES `actors` (`actor_ID`) ON DELETE CASCADE,
+  ADD CONSTRAINT `act_ibfk_2` FOREIGN KEY (`movie_ID`) REFERENCES `movies` (`movie_ID`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `has_movies`
 --
 ALTER TABLE `has_movies`
-  ADD CONSTRAINT `has_movies_ibfk_1` FOREIGN KEY (`movie_ID`) REFERENCES `movies` (`movie_ID`),
-  ADD CONSTRAINT `has_movies_ibfk_2` FOREIGN KEY (`theater_ID`) REFERENCES `theatre` (`theater_ID`);
+  ADD CONSTRAINT `has_movies_ibfk_1` FOREIGN KEY (`movie_ID`) REFERENCES `movies` (`movie_ID`) ON DELETE CASCADE,
+  ADD CONSTRAINT `has_movies_ibfk_2` FOREIGN KEY (`theater_ID`) REFERENCES `theatre` (`theater_ID`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `has_snack`
 --
 ALTER TABLE `has_snack`
-  ADD CONSTRAINT `has_snack_ibfk_1` FOREIGN KEY (`snack_ID`) REFERENCES `snack` (`snack_ID`),
-  ADD CONSTRAINT `has_snack_ibfk_2` FOREIGN KEY (`theater_ID`) REFERENCES `theatre` (`theater_ID`);
+  ADD CONSTRAINT `has_snack_ibfk_1` FOREIGN KEY (`snack_ID`) REFERENCES `snack` (`snack_ID`) ON DELETE CASCADE,
+  ADD CONSTRAINT `has_snack_ibfk_2` FOREIGN KEY (`theater_ID`) REFERENCES `theatre` (`theater_ID`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `produce`
 --
 ALTER TABLE `produce`
-  ADD CONSTRAINT `produce_ibfk_1` FOREIGN KEY (`company_ID`) REFERENCES `production_company` (`company_ID`),
-  ADD CONSTRAINT `produce_ibfk_2` FOREIGN KEY (`movie_ID`) REFERENCES `movies` (`movie_ID`);
+  ADD CONSTRAINT `produce_ibfk_1` FOREIGN KEY (`company_ID`) REFERENCES `production_company` (`company_ID`) ON DELETE CASCADE,
+  ADD CONSTRAINT `produce_ibfk_2` FOREIGN KEY (`movie_ID`) REFERENCES `movies` (`movie_ID`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
