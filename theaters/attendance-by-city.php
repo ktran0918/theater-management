@@ -16,11 +16,11 @@
 		// query to select all information from parts table
 		//  ADD the SQL query *******
 			$query = "
-				SELECT city, COUNT(has_movies.theater_ID) as 'number of attended theaters', SUM(movies.number_of_tickets_sold) AS 'tickets sold'
+				SELECT city, COUNT(has_movies.theater_ID) as 'number of attended theaters', SUM(has_movies.number_of_tickets_sold) AS 'tickets sold'
 				FROM theatre, has_movies, movies
 				WHERE theatre.theater_ID=has_movies.theater_ID AND has_movies.movie_ID=movies.movie_ID
 				GROUP BY city
-				ORDER BY SUM(movies.number_of_tickets_sold) DESC
+				ORDER BY SUM(has_movies.number_of_tickets_sold) DESC
 			";
 		// Get results from query
 			$result = mysqli_query($conn, $query);
