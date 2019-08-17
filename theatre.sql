@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: classmysql.engr.oregonstate.edu:3306
--- Generation Time: Aug 16, 2019 at 06:49 PM
+-- Generation Time: Aug 16, 2019 at 06:59 PM
 -- Server version: 10.3.13-MariaDB-log
 -- PHP Version: 7.0.33
 
@@ -94,7 +94,6 @@ CREATE TABLE `has_movies` (
 --
 
 INSERT INTO `has_movies` (`movie_ID`, `theater_ID`, `number_of_tickets_sold`) VALUES
-(755560770, 743423653, 50),
 (755560770, 743423653, 100),
 (705620021, 502908022, 1000),
 (402316707, 941283562, 5000),
@@ -103,7 +102,8 @@ INSERT INTO `has_movies` (`movie_ID`, `theater_ID`, `number_of_tickets_sold`) VA
 (705620021, 938470335, 50000),
 (806104336, 941283562, 10000),
 (806104336, 941283562, 50000),
-(705620021, 412498756, 100000);
+(705620021, 412498756, 100000),
+(243479361, 142042627, 50000);
 
 -- --------------------------------------------------------
 
