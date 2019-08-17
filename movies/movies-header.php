@@ -6,6 +6,7 @@
 <nav id="side-nav">
 	<ul id="side-nav-list">
 		<li><a href="index.php">List</a></li>
+		<li><a href="movies-at-theaters.php">Movies Shown at Theaters</a></li>
 		<li><a href="production-company-popularity.php">Production Companies' Popularity</a></li>
 		<li><a href="actors-popularity.php">Actors' Popularity</a></li>
 		<li><a href="add-movie.php">Add a Movie</a></li>

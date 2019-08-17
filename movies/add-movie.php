@@ -10,7 +10,7 @@
 <?php
   $msg = "Add a new record:";
   $conn = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-  
+
   if(!$conn){
     die('Could not connect: ' . mysql_error());
   }
@@ -32,10 +32,10 @@
     }
     else{
       $query = "
-        INSERT INTO movies(movie_ID, movie_name, release_date, running_time, genre, rating, number_of_tickets_sold, price) 
-        VALUES('$movie_ID', '$movie_name', '$release_date', '$running_time', '$genre', '$rating', '$number_of_tickets_sold', '$price')
+        INSERT INTO movies(movie_ID, movie_name, release_date, running_time, genre, rating, number_of_tickets_sold, price)
+        VALUES('$movie_ID', '$movie_name', '$release_date', '$running_time', '$genre', '$rating', '$price')
       ";
-      
+
       if(mysqli_query($conn, $query)){
         $msg = "Movies added successfully.<p>";
       }
@@ -53,7 +53,7 @@
   <form method="post" id="addForm">
     <fieldset>
       <legend>Movie:</legend>
-      <p> 
+      <p>
         <label for "movie_ID">Movie ID: </label>
         <input type = "number" min = 0 max = 999999999 class="required" name = "movie_ID" id = "movie_ID" title= "movie_ID should be numeric">
       </p>
@@ -69,18 +69,14 @@
         <label for "running_time">running_time:</label>
         <input type = "number" min = 1 max = 999 class = "required" name = "running_time" id = "running_time" title = "running_time should be numeric">
       </p>
-    
+
       <p>
         <label for "genre">genre:</label>
         <input type = "text" class = "required" name = "genre" id = genre">
       </p>
       <p>
         <label for "rating">rating:</label>
-        <input type = "number" min = 0 max = 10 class = "required" name = "rating" id = "rating" title = "rating should be numeric"> 
-      </p>
-      <p>
-        <label for "number_of_tickets_sold">number_of_ticket_sold:</label>
-        <input type = "number" min = 0 max = 9999999999 class = "required" name = "number_of_tickets_sold" id = "number_of_tickets_sold" title = "number of tickets sold should be numeric">
+        <input type = "number" min = 0 max = 10 class = "required" name = "rating" id = "rating" title = "rating should be numeric">
       </p>
       <p>
         <label for "price">price:</label>

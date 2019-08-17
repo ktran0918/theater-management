@@ -33,7 +33,6 @@
 				echo "<th>Name</th>";
 				echo "<th>Price</th>";
 				echo "<th>Type</th>";
-				echo "<th>Quantity Sold</th>";
 				echo "</tr>";
 				echo "</thead>";
 
@@ -46,7 +45,6 @@
 					echo "<td>" . $row['snack_name'] . "</td>";
 					echo "<td>" . $row['price'] . "</td>";
 					echo "<td>" . $row['type'] . "</td>";
-					echo "<td>" . $row['quantity_sold'] . "</td>";
 					echo "</tr>";
 				}
 

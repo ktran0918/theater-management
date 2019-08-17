@@ -1,6 +1,6 @@
 <?php
-	include "./movies-header.php";
-	$title = "Manage Movies";
+	include "./snacks-header.php";
+	$title = "Snacks Served at Theaters";
 ?>
 
 	<section class="greeting">
@@ -15,7 +15,7 @@
 			}
 		// query to select all information from parts table
 		//  ADD the SQL query *******
-			$query = "SELECT * FROM movies";
+			$query = "SELECT Theater, Snack, 'Quantity Sold' FROM snacks_at_theaters";
 		// Get results from query
 			$result = mysqli_query($conn, $query);
 			if (!$result) {
@@ -29,13 +29,9 @@
 				// Create the table header
 				echo "<thead>";
 				echo "<tr>";
-				echo "<th>ID</th>";
-				echo "<th>Name</th>";
-				echo "<th>Release Date</th>";
-				echo "<th>Running Time</th>";
-				echo "<th>Genre</th>";
-				echo "<th>Rating</th>";
-				echo "<th>Price</th>";
+				echo "<th>Theater</th>";
+				echo "<th>Snack</th>";
+				echo "<th>Quantity Sold</th>";
 				echo "</tr>";
 				echo "</thead>";
 
@@ -44,13 +40,9 @@
 				// Extract rows from the results returned from the database
 				while($row = mysqli_fetch_array($result)){
 					echo "<tr>";
-					echo "<td>" . $row['movie_ID'] . "</td>";
-					echo "<td>" . $row['movie_name'] . "</td>";
-					echo "<td>" . $row['release_date'] . "</td>";
-					echo "<td>" . $row['running_time'] . "</td>";
-					echo "<td>" . $row['genre'] . "</td>";
-					echo "<td>" . $row['rating'] . "</td>";
-					echo "<td>" . $row['price'] . "</td>";
+					echo "<td>" . $row['Theater'] . "</td>";
+					echo "<td>" . $row['Snack'] . "</td>";
+					echo "<td>" . $row['Quantity Sold'] . "</td>";
 					echo "</tr>";
 				}
 
