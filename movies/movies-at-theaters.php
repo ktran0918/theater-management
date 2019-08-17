@@ -15,7 +15,7 @@
 			}
 		// query to select all information from parts table
 		//  ADD the SQL query *******
-			$query = "SELECT Theater, Movie, 'Tickets Sold' FROM movies_at_theaters";
+			$query = "SELECT Theater, Movie, tickets_sold FROM movies_at_theaters";
 		// Get results from query
 			$result = mysqli_query($conn, $query);
 			if (!$result) {
@@ -42,7 +42,7 @@
 					echo "<tr>";
 					echo "<td>" . $row['Theater'] . "</td>";
 					echo "<td>" . $row['Movie'] . "</td>";
-					echo "<td>" . $row['Tickets Sold'] . "</td>";
+					echo "<td>" . $row['tickets_sold'] . "</td>";
 					echo "</tr>";
 				}
 
