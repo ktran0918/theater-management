@@ -15,7 +15,7 @@
 			}
 		// query to select all information from parts table
 		//  ADD the SQL query *******
-			$query = "SELECT Theater, Snack, 'Quantity Sold' FROM snacks_at_theaters";
+			$query = "SELECT Theater, Snack, quantity_sold as 'Quantity Sold' FROM snacks_at_theaters";
 		// Get results from query
 			$result = mysqli_query($conn, $query);
 			if (!$result) {
